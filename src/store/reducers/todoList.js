@@ -11,8 +11,15 @@ const reducer=(state={...initialState},action)=>{
             return {
                 data:[...state.data,action.todo]
             };
-      default:
-          return state;
+        case actionTypes.UPDATE_TODO:
+            state.data[action.id]=action.todo;
+            console.log(state)
+            return {data:[...state.data]};
+        case actionTypes.DELETE_TODO:
+            state.data.splice(action.id,1);
+            return {data:[...state.data]};
+        default:
+            return state;
     }
 }
 
